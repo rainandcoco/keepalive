@@ -5,7 +5,7 @@ import requests
 
 if __name__ == "__main__":
     with sync_playwright() as p:
-        browser = playwright.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=False)
         page = browser.new_page()
 
         # 访问Koyeb登录页面
