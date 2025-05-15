@@ -41,7 +41,7 @@ async def run(playwright: Playwright) -> None:
     ]         
     chromium = playwright.chromium
     browser = await chromium.launch(
-        headless= true,
+        headless= True,
         args=browser_args,
     )
 
