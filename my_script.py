@@ -8,6 +8,7 @@ if __name__ == "__main__":
 
         # 访问Koyeb登录页面
         page.goto("https://freecloud.ltd/login")
+        print(page.content())
 
         # 输入邮箱和密码
         page.fill('input[name="username"]', 'rainand')
@@ -15,7 +16,7 @@ if __name__ == "__main__":
 
         # 点击登录按钮
         page.click('button[type="submit"]')
-        print(page.content())
+        
 
         # 等待可能出现的错误消息或成功登录后的页面
         try:
