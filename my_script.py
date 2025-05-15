@@ -9,7 +9,7 @@ if __name__ == "__main__":
                         bypass_csp=True,
                         slow_mo=1000,
                         channel="chrome",
-                        disable-blink-features=AutomationControlled,
+                        #disable-blink-features=AutomationControlled,
                     )
         page = browser.new_page()
 
