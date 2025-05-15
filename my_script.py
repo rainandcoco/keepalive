@@ -26,11 +26,7 @@ if __name__ == "__main__":
 
 
         except:
-            # 如果没有找到错误消息,检查是否已经跳转到仪表板页面
-            try:
-                #page.wait_for_url("https://app.koyeb.com/", timeout=5000)
-
-            except:
+            print(page.content())
 
         finally:
             browser.close()
