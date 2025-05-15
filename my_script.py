@@ -17,13 +17,14 @@ if __name__ == "__main__":
 
         # 点击登录按钮
         page.click('button[type="submit"]')
+        print(page.content())
 
         # 等待可能出现的错误消息或成功登录后的页面
         try:
             # 等待可能的错误消息
             error_message = page.wait_for_selector('.MuiAlert-message', timeout=5000)
-            if error_message:
-                return print(error_message.inner_text())
+
+
         except:
             # 如果没有找到错误消息,检查是否已经跳转到仪表板页面
             try:
