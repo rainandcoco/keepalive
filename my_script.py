@@ -6,7 +6,7 @@ if __name__ == "__main__":
     with sync_playwright() as p:
         browser = p.chromium.launch(
                         headless=False,
-                        bypass_csp=True,
+                        #bypass_csp=True,
                         slow_mo=1000,
                         channel="chrome",
                         #disable-blink-features=AutomationControlled,
