@@ -4,7 +4,7 @@ import time
 import requests
 if __name__ == "__main__":
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False,slow_mo=1000,args=['--disable-blink-features=AutomationControlled'])
+        browser = p.chromium.launch(headless=True,slow_mo=1000,args=['--disable-blink-features=AutomationControlled'])
         page = browser.new_page()
 
         # 访问Koyeb登录页面
