@@ -29,9 +29,9 @@ if __name__ == "__main__":
             # 如果没有找到错误消息,检查是否已经跳转到仪表板页面
             try:
                 #page.wait_for_url("https://app.koyeb.com/", timeout=5000)
-                return f"登录成功!"
+
             except:
-                return f"登录失败: 未能跳转到仪表板页面"
+
         finally:
             browser.close()
         
