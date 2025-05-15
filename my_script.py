@@ -3,8 +3,7 @@ import os
 import requests
 
 
-def login_koyeb():
-
+if __name__ == "__main__":
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         page = browser.new_page()
@@ -13,7 +12,7 @@ def login_koyeb():
         page.goto("https://freecloud.ltd/login")
 
         # 输入邮箱和密码
-        page.fill('input[name="email"]', 'rainand')
+        page.fill('input[name="username"]', 'rainand')
         page.fill('input[name="password"]', 'caiyu0591')
 
         # 点击登录按钮
@@ -35,8 +34,5 @@ def login_koyeb():
                 return f"登录失败: 未能跳转到仪表板页面"
         finally:
             browser.close()
-
-if __name__ == "__main__":
-        status = login_koyeb()
-        print(status)
+        
 
