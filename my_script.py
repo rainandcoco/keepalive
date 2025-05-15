@@ -5,11 +5,6 @@ import requests
 if __name__ == "__main__":
     with sync_playwright() as p:
         browser = p.chromium.launch(
-                        # 指定本机用户缓存地址，这是隔离环境的主要点，指定不同的目录存放用户的数据。
-                        user_data_dir=USER_DIR_PATH,
-                        # 接收下载事件，允许下载需要
-                        accept_downloads=True,
-                        # 设置 GUI 模式，可以看到浏览器界面
                         headless=False,
                         bypass_csp=True,
                         slow_mo=1000,
