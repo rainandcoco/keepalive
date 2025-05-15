@@ -23,8 +23,7 @@ if __name__ == "__main__":
             # 等待可能的错误消息
             error_message = page.wait_for_selector('.MuiAlert-message', timeout=5000)
             if error_message:
-                error_text = error_message.inner_text()
-                return f"账号登录失败: {error_text}"
+                return f"{error_message.inner_text()}"
         except:
             # 如果没有找到错误消息,检查是否已经跳转到仪表板页面
             try:
