@@ -1,34 +1,68 @@
-from playwright.sync_api import sync_playwright
-import os
-import requests
+from playwright.async_api import Playwright, async_playwright, expect
+import asyncio
 
+async def run(playwright: Playwright) -> None:
+    browser_args = [
+        '--window-size=1300,570',
+        '--window-position=000,000',
+        '--disable-dev-shm-usage',
+        '--no-sandbox',
+        '--disable-web-security',
+        '--disable-features=site-per-process',
+        '--disable-setuid-sandbox',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--use-gl=egl',
+        '--disable-blink-features=AutomationControlled',
+        '--disable-background-networking',
+        '--enable-features=NetworkService,NetworkServiceInProcess',
+        '--disable-background-timer-throttling',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-breakpad',
+        '--disable-client-side-phishing-detection',
+        '--disable-component-extensions-with-background-pages',
+        '--disable-default-apps',
+        '--disable-extensions',
+        '--disable-features=Translate',
+        '--disable-hang-monitor',
+        '--disable-ipc-flooding-protection',
+        '--disable-popup-blocking',
+        '--disable-prompt-on-repost',
+        '--disable-renderer-backgrounding',
+        '--disable-sync',
+        '--force-color-profile=srgb',
+        '--metrics-recording-only',
+        '--enable-automation',
+        '--password-store=basic',
+        '--use-mock-keychain',
+        '--hide-scrollbars',
+        '--mute-audio'
+    ]         
+    chromium = playwright.chromium
+    browser = await chromium.launch(
+        headless=False,
+        args=browser_args,
+    )
 
-if __name__ == "__main__":
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
+    context = await browser.new_context(
+        ignore_https_errors=True,
+        locale='en-US',
+        permissions=['notifications'],
+    )
 
-        # 访问Koyeb登录页面
-        page.goto("https://freecloud.ltd/login")
+    page = await context.new_page()
 
-        # 输入邮箱和密码
-        page.fill('input[name="username"]', 'rainand')
-        page.fill('input[name="password"]', 'caiyu0591')
+    await page.goto('https://freecloud.ltd/login', wait_until='networkidle')
+    print(page.url)
 
-        # 点击登录按钮
-        page.click('button[type="submit"]')
-        print(page.content())
+    await context.close()
+    await browser.close()
+async def main():
+    async with async_playwright() as playwright:
+        await run(playwright)
 
-        # 等待可能出现的错误消息或成功登录后的页面
-        try:
-            # 等待可能的错误消息
-            error_message = page.wait_for_selector('.MuiAlert-message', timeout=5000)
-
-
-        except:
-            print(page.content())
-
-        finally:
-            browser.close()
-        
-
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+loop.close()
