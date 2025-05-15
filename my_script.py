@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 import os
+import time
 import requests
 if __name__ == "__main__":
     with sync_playwright() as p:
@@ -8,6 +9,7 @@ if __name__ == "__main__":
 
         # 访问Koyeb登录页面
         page.goto("https://freecloud.ltd/login")
+        time.sleep(10)
         print(page.content())
 
         # 输入邮箱和密码
