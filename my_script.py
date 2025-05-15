@@ -9,8 +9,8 @@ if __name__ == "__main__":
 
         # 访问Koyeb登录页面
         page.goto("https://freecloud.ltd/login")
-        page.wait_for_timeout(2000)
-        print(page.content())
+        page.wait_for_timeout(10000)
+        #print(page.content())
 
         # 输入邮箱和密码
         #page.fill('input[name="username"]', 'XXXXX')
