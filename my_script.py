@@ -23,7 +23,7 @@ if __name__ == "__main__":
             # 等待可能的错误消息
             error_message = page.wait_for_selector('.MuiAlert-message', timeout=5000)
             if error_message:
-                return f"{error_message.inner_text()}"
+                return print(error_message.inner_text())
         except:
             # 如果没有找到错误消息,检查是否已经跳转到仪表板页面
             try:
