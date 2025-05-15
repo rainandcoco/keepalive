@@ -11,8 +11,8 @@ if __name__ == "__main__":
         print(page.content())
 
         # 输入邮箱和密码
-        page.fill('input[name="username"]', 'rainand')
-        page.fill('input[name="password"]', 'caiyu0591')
+        page.fill('input[name="username"]', 'XXXXX')
+        page.fill('input[name="password"]', 'XXXXX')
 
         # 点击登录按钮
         page.click('button[type="submit"]')
