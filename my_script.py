@@ -9,15 +9,15 @@ if __name__ == "__main__":
 
         # 访问Koyeb登录页面
         page.goto("https://freecloud.ltd/login")
-        time.sleep(10)
+        page.wait_for_timeout(2000)
         print(page.content())
 
         # 输入邮箱和密码
-        page.fill('input[name="username"]', 'XXXXX')
-        page.fill('input[name="password"]', 'XXXXX')
+        #page.fill('input[name="username"]', 'XXXXX')
+        #page.fill('input[name="password"]', 'XXXXX')
 
         # 点击登录按钮
-        page.click('button[type="submit"]')
+        #page.click('button[type="submit"]')
         
 
         # 等待可能出现的错误消息或成功登录后的页面
