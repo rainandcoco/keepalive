@@ -1,33 +1,42 @@
-from DrissionPage import Chromium
-import os
-import time
-import requests
-if __name__ == "__main__":
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True,slow_mo=1000,args=['--disable-blink-features=AutomationControlled'])
-        page = browser.new_page()
 
-        # 访问Koyeb登录页面
-        page.goto("https://freecloud.ltd/login")
-        page.wait_for_timeout(10000)
-        #print(page.content())
+# 连接浏览器并获取浏览器对象
+browser = Chromium()  
 
-        # 输入邮箱和密码
-        #page.fill('input[name="username"]', 'XXXXX')
-        #page.fill('input[name="password"]', 'XXXXX')
+# 获取标签页对象并打开网址
 
-        # 点击登录按钮
-        #page.click('button[type="submit"]')
-        
+tab1 = browser.new_tab('https://www.baidu.com')
+tab2 = browser.new_tab('https://www.bing.com')
+tab3 = browser.latest_tab
 
-        # 等待可能出现的错误消息或成功登录后的页面
-        try:
-            # 等待可能的错误消息
-            error_message = page.wait_for_selector('.MuiAlert-message', timeout=5000)
+print(tab1.title)
+print(tab2.title)
+print(tab3.title)
+print(browser.latest_tab.title)
+
+browser.latest_tab.close()  # 关闭最新的标签页
 
 
-        except:
-            print(page.content())
+# 标签页没有Selenium所谓的焦点的概念，多个标签页可以并行操作，所以可以多线程同时打开多个标签页
 
-        finally:
-            browser.close()
+
+from concurrent.futures import ThreadPoolExecutor
+
+
+def open_url(browser,url): 
+    
+    browser.new_tab(url)
+
+chinese_websites = [
+    "https://www.taobao.com",     # 淘宝
+    "https://www.tmall.com",      # 天猫
+    "https://www.jd.com",          # 京东
+]    
+
+# 使用线程池
+with ThreadPoolExecutor(max_workers=3) as executor:
+    for url in chinese_websites:
+        executor.submit(open_url, browser,url)
+
+
+
+input('请按任意键继续')
