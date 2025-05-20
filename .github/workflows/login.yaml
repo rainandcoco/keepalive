@@ -18,7 +18,7 @@ jobs:
 
       - name: 安装 Playwright 所需依赖
         run: |
-          npx playwright install-deps
+          npx Chromium install-deps
 
       - name: 设置 Python 环境
         uses: actions/setup-python@v2
@@ -30,9 +30,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install playwright aiofiles requests
 
-      - name: Install Playwright Browsers  # 安装浏览器
+      - name: Install Chromium Browsers  # 安装浏览器
         run: |
-          playwright install
+          Chromium install
 
       - name: 运行登录脚本
         env:
