@@ -26,9 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install Chromium aiofiles requests
 
-      - name: Install Chromium Browsers  # 安装浏览器
-        run: |
-          Chromium install
+
 
       - name: 运行登录脚本
         env:
